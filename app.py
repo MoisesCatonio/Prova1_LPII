@@ -9,14 +9,11 @@ coligacoes = ml.getColigacoes(lista_geral)
 partidos = ml.getPartidos(lista_geral)
 
 print("Coligações: ")
-for ex in sorted(coligacoes):
+for ex in coligacoes:
 	print(ex)
 
 print("Partidos: ")
 print(" ")
 
-for ex2 in sorted(partidos):
+for ex2 in partidos:
 	print(ex2)
-
-#print(partidos)
-#print(coligacoes)

@@ -9,7 +9,7 @@ def getColigacoes(lista_geral):
 		if(len(celula[2].split(" - ")) > 1):
 			coligacao.append(celula[2].split(" - ")[1]) 
 	coligacoes = set(coligacao)
-	return coligacoes
+	return sorted(coligacoes)
 
 def getPartidos(lista_geral):
 	for candidato in lista_geral[1:]:
@@ -17,4 +17,4 @@ def getPartidos(lista_geral):
 		if(len(celula[2].split(" - ")) > 0):
 			partido.append(celula[2].split(" - ")[0])
 	partidos = set(partido)
-	return partidos
+	return sorted(partidos)
