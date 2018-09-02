@@ -8,12 +8,12 @@ coligacoes = ml.getColigacoes(lista_geral)
 
 partidos = ml.getPartidos(lista_geral)
 
-print("Coligações: ")
-for ex in coligacoes:
-	print(ex)
+#ml.showSomethingListed(coligacoes)
 
-print("Partidos: ")
-print(" ")
+#ml.showSomethingListed(partidos)
 
-for ex2 in partidos:
-	print(ex2)
+votos_partidos = ml.countVotes_P(partidos,lista_geral)
+
+votos_coligacoes = ml.countVotes_C(coligacoes,lista_geral)
+
+ml.showSomethingTupled(votos_coligacoes)
