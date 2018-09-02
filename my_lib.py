@@ -27,7 +27,7 @@ def showSomethingListed(list_of_something):
 		print(something)
 	print("")
 
-#Função para contagem de votos dos Partidos.
+#Função para contagem de votos das Coligações.
 #Recebe: Conjunto, Conjunto, Lista
 #Retorna: Dicionário
 def countVotes(entidades_1, entidades_2, lista_geral):
@@ -55,7 +55,7 @@ def showSomethingTupled(dict_of_something):
 		print(something + " -----> " + str(dict_of_something[something]))
 	print("")
 
-#Função para geração do Quoeficiente Eleitoral.
+#Função para geração do Quociente Eleitoral.
 #Recebe: Dicionário, Inteiro
 #Retorna: Inteiro
 def generateQE(dict_votos, cadeiras):
@@ -63,4 +63,8 @@ def generateQE(dict_votos, cadeiras):
 	return QE_entidades
 
 def generateQP(dict_votos, QE):
-	pass
+	QP = dict.fromkeys(dict_votos, 0)
+	for coligacao in dict_votos:
+		QP[coligacao] = int(dict_votos[coligacao]/QE)
+	
+	return QP
