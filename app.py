@@ -6,14 +6,10 @@ lista_geral = list(csv.reader(open('eleicao.csv', encoding="UTF-8"),delimiter=";
 
 coligacoes = ml.getColigacoes(lista_geral)
 
-partidos = ml.getPartidos(lista_geral)
+partidos = ml.getPartidosUnitarios(lista_geral)
 
-#ml.showSomethingListed(coligacoes)
+votos_geral = ml.countVotes(partidos,coligacoes, lista_geral)
 
-#ml.showSomethingListed(partidos)
+ml.showSomethingTupled(votos_geral)
 
-votos_partidos = ml.countVotes_P(partidos,lista_geral)
-
-votos_coligacoes = ml.countVotes_C(coligacoes,lista_geral)
-
-ml.showSomethingTupled(votos_coligacoes)
+QE = ml.generateQE(votos_geral, 29)
