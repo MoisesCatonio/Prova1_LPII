@@ -106,6 +106,9 @@ def allocateResiduals(dict_votos, dict_QP, residuals, dict_residuals_count):
 
 	return dict_QP
 
+#Função para listagem dos eleitos ordenados por voto.
+#Recebe: Dicionário,Lista
+#Retorna: Lista
 def defineCandidatos(dict_QP, lista_geral):
 	sorted_by_votes = sorted(lista_geral[1:], key=lambda candidato: int(candidato[3]), reverse = True)
 	
