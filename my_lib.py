@@ -87,6 +87,9 @@ def defineResiduals(dict_QP, total_vagas):
 def allocateResiduals(dict_votos, dict_QP, residuals, dict_residuals_count):
 	media = dict.fromkeys(dict_QP, 0)
 	for coligacao in media:
+		#Atenção na matemática da fórmula e nos parênteses, 
+		# (dict_QP[coligacao] - dict_residuals_count[coligacao])
+		#Se faz necessário pois senão a divisão ia incrementar de 2 em 2.
 		media[coligacao] = (dict_votos[coligacao]/((dict_QP[coligacao] - dict_residuals_count[coligacao])+dict_residuals_count[coligacao]+1))
 	
 	coef_atualizar = max(list(media.values()))
@@ -102,4 +105,25 @@ def allocateResiduals(dict_votos, dict_QP, residuals, dict_residuals_count):
 		return allocateResiduals(dict_votos, dict_QP, residuals, dict_residuals_count)
 
 	return dict_QP
+
+def defineCandidatos(dict_QP, lista_geral):
+	sorted_by_votes = sorted(lista_geral[1:], key=lambda candidato: int(candidato[3]), reverse = True)
 	
+	new_sorted_elegiveis = []
+
+	keys = dict_QP.keys()
+
+	for candidato in sorted_by_votes:
+		if(len(candidato[2].split(" - ")) > 1):
+			coligacao = candidato[2].split(" - ")[1]
+			for key in keys:
+				if(coligacao == key and dict_QP[key] > 0):
+					new_sorted_elegiveis.append(candidato)
+					dict_QP[key] -= 1
+		else:
+			partido = candidato[2].split(" - ")[0]
+			for key in keys:
+				if(partido == key and dict_QP[key] > 0):
+					new_sorted_elegiveis.append(candidato)
+					dict_QP[key] -= 1
+	return new_sorted_elegiveis

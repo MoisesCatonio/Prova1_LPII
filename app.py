@@ -26,4 +26,11 @@ dict_residuals_count = dict.fromkeys(QP_geral, 0)
 
 QP_definitivo = ml.allocateResiduals(votos_geral, QP_geral, residuais, dict_residuals_count)
 
-ml.showSomethingTupled(QP_definitivo)
+#ml.showSomethingTupled(QP_definitivo)
+
+lista_eleitos = ml.defineCandidatos(QP_definitivo, lista_geral)
+
+with open('eleicao.tsv', 'w', newline='') as file_output:
+    tsv_output = csv.writer(file_output, delimiter="\t")
+    for eleito in lista_eleitos:
+        tsv_output.writerow(eleito)     
