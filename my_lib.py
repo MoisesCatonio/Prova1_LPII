@@ -68,8 +68,10 @@ def generateQE(dict_votos, cadeiras):
 def generateQP(dict_votos, QE):
 	QP = dict.fromkeys(dict_votos, 0)
 	for coligacao in dict_votos:
-		if(int(dict_votos[coligacao]/QE) > 0):
+		if(dict_votos[coligacao]/QE >= 1):
 			QP[coligacao] = int(dict_votos[coligacao]/QE)
+		else:
+			del QP[coligacao]
 	return QP
 
 #Função para geração da quantidade de vagas residuais.
@@ -83,10 +85,9 @@ def defineResiduals(dict_QP, total_vagas):
 #Retorna: Dicionário
 #Tive que usar recursividade aqui T.T....
 def allocateResiduals(dict_votos, dict_QP, residuals, dict_residuals_count):
-	media = dict_votos
-	
+	media = dict.fromkeys(dict_QP, 0)
 	for coligacao in media:
-		media[coligacao] = dict_votos[coligacao]/(dict_QP[coligacao]+dict_residuals_count[coligacao]+1)
+		media[coligacao] = (dict_votos[coligacao]/((dict_QP[coligacao] - dict_residuals_count[coligacao])+dict_residuals_count[coligacao]+1))
 	
 	coef_atualizar = max(list(media.values()))
 
